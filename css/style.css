@@ -3,11 +3,36 @@ body {
 }
 
 h1 {
+  font-size: 4rem;
   letter-spacing: 1.5em;
-  margin-left: 2em;
-  margin-bottom: 1em;
+  margin-left: 1.75em;
+  margin-bottom: 0.4em;
+  margin-top: 40vh;
+  color:#B5D9DF;
+}
+
+.progress {
+  margin-bottom: 2em;
 }
 
 .answers {
   display: block;
+}
+
+.btn-lg {
+  padding: 1.5rem 2.5rem;
+  font-size: 2rem
+}
+
+
+
+
+
+.bg-tv {
+  background-color: #EDE0AD;
+
+}
+
+.bg-celebs {
+  background-color: #D3D5ED;
 }
