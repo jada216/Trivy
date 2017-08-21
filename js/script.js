@@ -16,6 +16,11 @@ $(function (){
     $('#question').show();
   });
 
+  $('.answers').click(function(){
+    $(this).removeClass('btn-secondary').addClass('btn-info');
+    $('#question').show();
+  });
+
   $('.progressbar').addClass('bg-secondary');
 
 

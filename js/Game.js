@@ -15,6 +15,8 @@ class Game {
       dataType: 'json'
     }).done(function(response) {
       console.log(response);
+      $('.card-text').text(response.results[0].category);
+      $('.card-text').text(response.results[0].question);
     });
 
   }
