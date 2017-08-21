@@ -1,5 +1,6 @@
 $(function (){
-  var player = '';
+  var player;
+  var game;
   $('#question').hide();
   $('#spin').hide();
   $('#player-form').submit(function(e){
@@ -19,14 +20,16 @@ $(function (){
 
 
 
+  function startGame() {
+    $('#start').hide();
+    $('#spin').show();
+    $('h1').css('marginTop', '10vh');
 
+    game = new Game(player);
+    game.getQuestionByCategory('sports');
+
+  }
 
 
 
 });
-
-function startGame() {
-  $('#start').hide();
-  $('#spin').show();
-  $('h1').css('marginTop', '10vh');
-}
