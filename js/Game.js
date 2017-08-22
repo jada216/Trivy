@@ -6,12 +6,12 @@ var Game = (function() {
     incorrect: [],
     startGame: function() {
       $('#start').hide();
-      $('#spin').show();
+      $('#wheel').show();
       $('h1').css('marginTop', '10vh');
     },
     setup: function() {
       $('#question').hide();
-      $('#spin').hide();
+      $('#wheel').hide();
     },
     spin: function() {
       var r = Math.floor(Math.random() * 6);
@@ -64,28 +64,3 @@ var Game = (function() {
     }
   }
 })();
-
-
-// success: function(response) {
-//   $('.card-header').text(response.results[0].category);
-//   $('.card-text').text(response.results[0].question);
-//
-//   this.currentCorrect = response.results[0].correct_answer;
-//   this.currentIncorrect = response.results[0].incorrect_answers;
-//
-//
-//   this.answers = this.currentIncorrect;
-//
-//   var random = Math.floor(Math.random() * (this.currentIncorrect.length + 1));
-//   this.answers.splice(random, 0, this.currentCorrect);
-//   this.answers.forEach(function(item, i) {
-//     var current = $('.answers').get(i);
-//     $(current).text(item);
-//   });
-// }
-
-
-var r = 0;
-
-
-$('#question').show();

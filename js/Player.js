@@ -20,6 +20,13 @@ var Player = (function() {
       var index = this.categoriesNeeded.indexOf(category);
       this.categoriesNeeded.splice(index, 1);
       this.score++;
+    },
+    canSolveCategory: function(category) {
+      if(this.consecutiveAnswers >= 3) {
+        consecutiveAnswers = 0;
+        return true;
+      }
+      return false;
     }
   }
 })();

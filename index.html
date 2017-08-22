@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <title>Trivy</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/spinwheel.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -31,10 +33,11 @@
           <div class="card-block">
             <h4 class="card-title">Question</h4>
             <p class="card-text">Question Text</p>
+            <div id='answers-list'></div>
+            <!-- <div class="answers btn btn-secondary"></div>
             <div class="answers btn btn-secondary"></div>
             <div class="answers btn btn-secondary"></div>
-            <div class="answers btn btn-secondary"></div>
-            <div class="answers btn btn-secondary"></div>
+            <div class="answers btn btn-secondary"></div> -->
           </div>
         </div>
       </div>
@@ -50,13 +53,33 @@
       </div>
     </div>
 
-    <div class='row text-center' id='spin'>
+    <div id="wrapper">
+
+      <div id="wheel">
+        <div id="inner-wheel">
+          <div class="sec"><span class="fa fa-bell-o"></span></div>
+          <div class="sec"><span class="fa fa-comment-o"></span></div>
+          <div class="sec"><span class="fa fa-smile-o"></span></div>
+          <div class="sec"><span class="fa fa-heart-o"></span></div>
+          <div class="sec"><span class="fa fa-star-o"></span></div>
+          <div class="sec"><span class="fa fa-lightbulb-o"></span></div>
+        </div>
+
+        <div id="spin">
+          <div id="inner-spin"></div>
+        </div>
+
+        <div id="shine"></div>
+      </div>
+    </div>
+
+    <!-- <div class='row text-center' id='spinButton'>
       <div class='col-lg-6 offset-lg-3'>
         <div class="btn btn-lg btn-outline-info">
           Get Question
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -64,12 +87,10 @@
 
 <body>
 
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src='js/SpinWheel.js'></script>
   <script src='js/Player.js'></script>
   <script src='js/Game.js'></script>
   <script src='js/App.js'></script>
