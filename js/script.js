@@ -1,40 +1,34 @@
-$(function (){
-  var player;
-  var game;
-  $('#question').hide();
-  $('#spin').hide();
-  $('#player-form').submit(function(e){
+$(function() {
+  var Player = App.Player();
+  var Game = App.Game();
+
+  Game.setup();
+
+
+  $('#player-form').submit(function(e) {
     e.preventDefault();
-    player = new Player($('#playerName').val());
-    console.log(player.getName());
-
-    startGame();
+    Player.name = $('#playerName').val();
+    Game.player = Player;
+    Game.startGame();
   });
 
-  $('#spin').click(function(){
+  $('#spin').click(function() {
     $(this).hide();
-    $('#question').show();
+    var category = Game.spin();
+    Game.callAPI(Game.baseURL + category).done(function(data){
+      console.log(data);
+    })
   });
 
-  $('.answers').click(function(){
-    $(this).removeClass('btn-secondary').addClass('btn-info');
-    $('#question').show();
+  $('.answers').click(function() {
+    if(game.isCorrect($(this).text())) {
+      $(this).removeClass('btn-secondary').addClass('btn-success');
+      game.addCorrectAnswer();
+    } else {
+      $(this).removeClass('btn-secondary').addClass('btn-warning');
+    }
   });
 
   $('.progressbar').addClass('bg-secondary');
-
-
-
-  function startGame() {
-    $('#start').hide();
-    $('#spin').show();
-    $('h1').css('marginTop', '10vh');
-
-    game = new Game(player);
-    game.getQuestionByCategory('sports');
-
-  }
-
-
 
 });

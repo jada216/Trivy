@@ -1,33 +1,25 @@
-class Player {
-  constructor(name) {
-    this.name = name;
-    this.score = 0;
-    this.categoriesNeeded = ['Sports','Geography','TV', 'Science','History', 'Celebs'];
-    this.consecutiveAnswers = 0;
+var Player = (function() {
+  return {
+    name: '',
+    score: 0,
+    consecutiveAnswers: 0,
+    categoriesNeeded: ['Sports', 'Geography', 'TV', 'Science', 'History', 'Celebs'],
+    getName: function() {
+      return this.name
+    },
+    getScore: function() {
+      return this.score;
+    },
+    consecutiveAnswers: function() {
+      return this.consecutiveAnswers
+    },
+    getCategoriesNeeded: function() {
+      return this.categoriesNeeded;
+    },
+    completeCategory: function(category) {
+      var index = this.categoriesNeeded.indexOf(category);
+      this.categoriesNeeded.splice(index, 1);
+      this.score++;
+    }
   }
-
-  getName() {
-    return this.name;
-  }
-
-  getConsecutiveAnswers() {
-    return this.consecutiveAnswers;
-  }
-
-  getCategoriesNeeded() {
-    return this.categoriesNeeded;
-  }
-
-  getScore() {
-    return this.score();
-  }
-
-  completeCategory(category) {
-    var index = categoriesNeeded.indexOf(category);
-    categoriesNeeded.splice(index, 1);
-    score++;
-  }
-
-
-
-}
+})();

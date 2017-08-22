@@ -1,94 +1,91 @@
-class Game {
-  constructor(player) {
-    this.player = player;
-    this.baseURL = 'https://opentdb.com/api.php?amount=1';
-    this.currentCorrect = null;
-    this.currentIncorrect = null;
-    this.answers = null;
-  }
-
-  getRandomQuestion() {
-    this.callAPI(this.baseURL);
-  }
-
-  getQuestionByCategory(category) {
-    var str = '';
-    switch (category.toLowerCase()) {
-      case 'sports':
-        str = '&category=21';
-        break;
-
-      case 'geography':
-        str = '&category=22';
-        break;
-
-      case 'tv':
-        var random = Math.floor(Math.random() * 2);
-        if (random === 0) {
-          str = '&category=14';
-        } else {
-          str = '&category=15';
-        }
-        break;
-
-      case 'science':
-        var random = Math.floor(Math.random() * 3);
-        if (random === 0) {
-          str = '&category=17';
-        } else if (random === 1) {
-          str = '&category=18';
-        } else {
-          str = '&category=17';
-        }
-        break;
-
-      case 'history':
-        var random = Math.floor(Math.random() * 2);
-        if (random === 0) {
-          str = '&category=23';
-        } else {
-          str = '&category=24';
-        }
-        break;
-      case 'celebs':
-        str = '&category=26';
-        break;
-      default:
-        console.log('Error');
-    }
-
-    this.callAPI(this.baseURL + str);
-  }
-
-  callAPI(url) {
-    $.ajax({
-      type: 'GET',
-      url: url,
-      dataType: 'json'
-    }).done(function(response) {
-      console.log(response);
-      $('.card-header').text(response.results[0].category);
-      $('.card-text').text(response.results[0].question);
-
-      this.currentCorrect = response.results[0].correct_answer;
-      this.currentIncorrect = response.results[0].incorrect_answers;
-
-      console.log('Current Correct', this.currentCorrect);
-      console.log('Current Incorrect', this.currentIncorrect);
-
-      this.answers = this.currentIncorrect;
-      console.log('All answers', this.answers);
-
-      var random = Math.floor(Math.random() * (this.currentIncorrect.length + 1));
-      console.log('Random', random);
-      console.log(this.answers.splice(random, 0, this.currentCorrect));
-      console.log(this.answers);
-      this.answers.forEach(function(item, i) {
-        var current = $('.answers').get(i);
-        $(current).text(item);
+var Game = (function() {
+  return {
+    player: '',
+    baseURL: 'https://opentdb.com/api.php?amount=1',
+    correct: '',
+    incorrect: [],
+    startGame: function() {
+      $('#start').hide();
+      $('#spin').show();
+      $('h1').css('marginTop', '10vh');
+    },
+    setup: function() {
+      $('#question').hide();
+      $('#spin').hide();
+    },
+    spin: function() {
+      var r = Math.floor(Math.random() * 6);
+      switch (r) {
+        case 0:
+          return '&category=21';
+          break;
+        case 1:
+          return '&category=22';
+          break;
+        case 2:
+          var random = Math.floor(Math.random() * 2);
+          if (random === 0) {
+            return '&category=14';
+          } else {
+            return '&category=15';
+          }
+          break;
+        case 3:
+          var random = Math.floor(Math.random() * 3);
+          if (random === 0) {
+            return '&category=17';
+          } else if (random === 1) {
+            return '&category=18';
+          } else {
+            return '&category=17';
+          }
+          break;
+        case 4:
+          var random = Math.floor(Math.random() * 2);
+          if (random === 0) {
+            return '&category=23';
+          } else {
+            return '&category=24';
+          }
+          break;
+        case 5:
+          return '&category=26';
+          break;
+        default:
+          return '';
+      }
+    },
+    callAPI: function(url) {
+      return $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json'
       });
-
-
-    });
+    }
   }
-}
+})();
+
+
+// success: function(response) {
+//   $('.card-header').text(response.results[0].category);
+//   $('.card-text').text(response.results[0].question);
+//
+//   this.currentCorrect = response.results[0].correct_answer;
+//   this.currentIncorrect = response.results[0].incorrect_answers;
+//
+//
+//   this.answers = this.currentIncorrect;
+//
+//   var random = Math.floor(Math.random() * (this.currentIncorrect.length + 1));
+//   this.answers.splice(random, 0, this.currentCorrect);
+//   this.answers.forEach(function(item, i) {
+//     var current = $('.answers').get(i);
+//     $(current).text(item);
+//   });
+// }
+
+
+var r = 0;
+
+
+$('#question').show();
