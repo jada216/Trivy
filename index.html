@@ -6,76 +6,44 @@
   <title>Trivy</title>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <main class='container'>
-  <div id='header-info' class='text-center'>
-    <h1>TRIVY</h1>
-    <!-- <h4>Name</h4> -->
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 16.67%"></div>
+  <div id='header-info'>
+  <h1 class='text-center'>TRIVY</h1>
+</div>
+  <div id='player-input' class='text-center'>
+    <input type="text" class="form-control" id="playerName" placeholder="Player Name">
+    <input type="button" value="Play" id='play' class='btn btn-outline-info' />
+  </div>
+
+  <div id='board' class='container'>
+    <div class='row'>
+      <div class='col-lg-10 offset-lg-1' id='board2'>
+        <div class="row">
+          <div class="text-center pieces col-lg-4">Film</div>
+          <div class="text-center pieces col-lg-4">Music</div>
+          <div class="text-center pieces col-lg-4">TV</div>
+        </div>
+
+        <div class="row">
+          <div class="text-center pieces col-lg-4">Science</div>
+          <div class="text-center pieces col-lg-4">Math</div>
+          <div class="text-center pieces col-lg-4">Geography</div>
+        </div>
+
+        <div class="row">
+          <div class="text-center pieces col-lg-4">History</div>
+          <div class="text-center pieces col-lg-4">Art</div>
+          <div class="text-center pieces col-lg-4">Celebs</div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <div class='container'>
-    <div class='row' id='question'>
-      <div class='col-lg-6 offset-lg-3'>
-        <div class="card">
-          <h3 class="card-header">Category</h3>
-          <div class="card-block">
-            <h4 class="card-title">Question</h4>
-            <p class="card-text">Question Text</p>
-            <div id='answers-list'></div>
-            <!-- <div class="answers btn btn-secondary"></div>
-            <div class="answers btn btn-secondary"></div>
-            <div class="answers btn btn-secondary"></div>
-            <div class="answers btn btn-secondary"></div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class='row text-center' id='start'>
-      <div class='col-lg-6 offset-lg-3'>
-        <div class="form-control">
-          <form id='player-form'>
-            <input type="text" class="form-control" id="playerName" placeholder="Player Name">
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div id='wheel'>
-      <canvas id="canvas" width="500" height="500"></canvas>
-      <input type="button" value="SPIN" id='spin' class='btn btn-outline-info'/>
-    </div>
-
-    <!-- <div class='row text-center' id='spinButton'>
-      <div class='col-lg-6 offset-lg-3'>
-        <div class="btn btn-lg btn-outline-info">
-          Get Question
-        </div>
-      </div>
-    </div> -->
-
-    <div class='row text-center' id='choose-category'>
-      <h3 class='tetx-center'>You Got 3 Correct, Choose which Category to Complete</h3>
-      <div class='col-lg-6 offset-lg-3'>
-        <div class="btn btn-outline-info category-button">Sports</div>
-        <div class="btn btn-outline-info category-button">Science/Tech/Math</div>
-        <div class="btn btn-outline-info category-button">TV/Video Games</div>
-        <div class="btn btn-outline-info category-button">Geography</div>
-        <div class="btn btn-outline-info category-button">History</div>
-        <div class="btn btn-outline-info category-button">Celebs</div>
-      </div>
-    </div>
 
 
 
@@ -83,10 +51,9 @@
 
 <body>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script src='js/SpinWheel.js'></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
   <script src='js/Player.js'></script>
   <script src='js/Game.js'></script>
   <script src='js/App.js'></script>

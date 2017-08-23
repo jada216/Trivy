@@ -1,6 +1,7 @@
+
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #242331;
+  background-color: #262626;
 }
 
 h1 {
@@ -12,41 +13,29 @@ h1 {
   color:#5C9EAD;
 }
 
+h3 {
+  color: #fff;
+  text-align: center;
+}
+
 #choose-category h3 {
   color:#fff;
   margin-left: 10vw;
 }
 
-#wheel {
-    margin-left: 15vw;
+input {
+  margin-bottom: 1em;
 }
 
-#spin {
-  margin-left: 15vw;
+.pieces {
+  background-color: #fff;
+  font-size: 2rem;
+  height: 25vh;
+  border: 1px solid #000;
+  padding-top: 3em;
 }
 
-.progress {
-  margin-bottom: 2em;
-}
-
-.answers {
-  display: block;
-}
-
-.btn-lg {
-  padding: 1.5rem 2.5rem;
-  font-size: 2rem
-}
-
-.bg-tv {
-  background-color: #EDE0AD;
-
-}
-
-.bg-celebs {
-  background-color: #D3D5ED;
-}
-
-.category-button {
-  margin: 0.5em;
+.pieces:hover {
+  background-color: #000;
+  color:#fff;
 }
