@@ -23,7 +23,8 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div id='modal-question'></div>
+        <div id='answers-list'></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -35,42 +36,47 @@
 <main class='container'>
 
   <div id='header-info'>
-  <h1 class='text-center'>TRIVY</h1>
-</div>
+    <h1 class='text-center'>TRIVY</h1>
+  </div>
   <div id='player-input' class='text-center'>
-    <input type="text" class="form-control" id="playerName" placeholder="Player Name">
-    <input type="button" value="Play" id='play' class='btn btn-outline-info' />
+    <!-- <input type="text" class="form-control" id="playerName" placeholder="Player Name"> -->
+    <input type="button" value="Play" id='play' class='btn btn-lg btn-outline-info' />
   </div>
 
   <div id='board' class='container'>
     <div class='row'>
       <div class='col-lg-10 offset-lg-1' id='board2'>
         <div class="row">
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Film</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Music</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">TV</div>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Film</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Music</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">TV</button>
         </div>
 
         <div class="row">
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Science</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Math</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Geography</div>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Science</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Math</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Geography</button>
         </div>
 
         <div class="row">
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">History</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Art</div>
-          <div class="text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Celebs</div>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">History</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Sports</button>
+          <button class="btn text-center pieces col-lg-4" data-toggle="modal" data-target="#questionModal">Celebs</button>
         </div>
 
       </div>
     </div>
   </div>
-
-
+  <div class="progress col-lg-10 offset-lg-1">
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
 
 
 </main>
+
+<footer class='text-center'>
+  <input type="button" value="Get Question" id='get-question' class='btn btn-lg btn-outline-info' />
+</footer>
 
 <body>
 

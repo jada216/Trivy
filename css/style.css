@@ -4,6 +4,10 @@ body {
   background-color: #262626;
 }
 
+footer {
+  color: #fff;
+}
+
 h1 {
   font-size: 4rem;
   letter-spacing: 1.5em;
@@ -23,10 +27,38 @@ h3 {
   margin-left: 10vw;
 }
 
+footer {
+  font-size: 2rem;
+}
+
+.progress-bar {
+  background-color: #5C9EAD;
+}
+
+#player-score {
+  text-align: center;
+}
+
+#board {
+  margin-bottom: 1em;
+}
+
+.btn {
+  font-family: 'Montserrat', sans-serif;
+}
+
 input {
   margin-bottom: 1em;
 }
 
+.answers {
+  display: block;
+}
+
+.progress {
+  padding: 0;
+  margin-bottom: 1em;
+}
 
 
 .pieces {
@@ -34,13 +66,13 @@ input {
   font-size: 2rem;
   height: 25vh;
   border: 1px solid #000;
-  padding-top: 3em;
+  padding-top: 2em;
 }
 
-.pieces:hover {
+/*.pieces:hover {
   background-color: #000;
   color:#fff;
-}
+}*/
 
 .fade.in {
   opacity: 1;
