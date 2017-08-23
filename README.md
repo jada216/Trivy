@@ -1,2 +1,9 @@
-# Unit-1-Project
-Trivia Game for Unit 1 project
+# TRIVY - A Simple Fun Trivia Game
+Technologies used.
+Your process/approach.
+Future features
+Any bugs
+Your biggest wins and challenges.
+The game you chose.
+The rules of the game.
+Your process for turning that game into a web application (wireframes, blockers/issues that popped up).
