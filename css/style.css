@@ -12,6 +12,11 @@ h1 {
   color:#5C9EAD;
 }
 
+#choose-category h3 {
+  color:#fff;
+  margin-left: 10vw;
+}
+
 .progress {
   margin-bottom: 2em;
 }
@@ -32,4 +37,8 @@ h1 {
 
 .bg-celebs {
   background-color: #D3D5ED;
+}
+
+.category-button {
+  margin: 0.5em;
 }
