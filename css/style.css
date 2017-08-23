@@ -69,6 +69,11 @@ input {
   padding-top: 2em;
 }
 
+.done {
+  background-color: #5C9EAD !important;
+  color:#fff !important;
+}
+
 /*.pieces:hover {
   background-color: #000;
   color:#fff;
