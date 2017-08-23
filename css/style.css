@@ -17,6 +17,14 @@ h1 {
   margin-left: 10vw;
 }
 
+#wheel {
+    margin-left: 15vw;
+}
+
+#spin {
+  margin-left: 15vw;
+}
+
 .progress {
   margin-bottom: 2em;
 }

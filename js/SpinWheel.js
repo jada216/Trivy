@@ -1,60 +1,130 @@
-var degree = 1800;
-var clicks = 0;
+var options = ["Sports", "TV/Video Games", "Geography", "History", "Celebs", "Science/Math/Tech"];
 
-$(function() {
+var startAngle = 0;
+var arc = Math.PI / (options.length / 2);
+var spinTimeout = null;
 
-  /* WHEEL SPIN FUNCTION */
-  $('#spin').click(function() {
+var spinArcStart = 10;
+var spinTime = 0;
+var spinTimeTotal = 0;
 
-    //add 1 every click
-    clicks++;
+var ctx;
 
-    /* multiply the degree by number of clicks
-	  generate random number between 1 - 360,
-    then add to the new degree */
-    var newDegree = degree * clicks;
-    var extraDegree = Math.floor(Math.random() * (360 - 1 + 1)) + 1;
-    totalDegree = newDegree + extraDegree;
+document.getElementById("spin").addEventListener("click", spin);
 
-    /*let's make the spin btn to tilt every
-    time the edge of the section hits
-    the indicator*/
-    $('#wheel .sec').each(function() {
-      var t = $(this);
-      var noY = 0;
+function byte2Hex(n) {
+  var nybHexString = "0123456789ABCDEF";
+  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+}
 
-      var c = 0;
-      var n = 700;
-      var interval = setInterval(function() {
-        c++;
-        if (c === n) {
-          clearInterval(interval);
-        }
+function RGB2Color(r,g,b) {
+	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
 
-        var aoY = t.offset().top;
-        console.log(aoY);
-        console.log(t.text());
+function getColor(item, maxitem) {
+  var phase = 0;
+  var center = 128;
+  var width = 127;
+  var frequency = Math.PI*2/maxitem;
 
-        /* 23.7 is the minumum offset number that
-        each section can get, in a 30 angle degree.
-        So, if the offset reaches 23.7, then we know
-        that it has a 30 degree angle and therefore,
-        exactly aligned with the spin btn */
-        if (aoY < 23.89) {
-          console.log('<<<<<<<<');
-          $('#spin').addClass('spin');
-          setTimeout(function() {
-            $('#spin').removeClass('spin');
-          }, 100);
-        }
-      }, 10);
+  red   = Math.sin(frequency*item+2+phase) * width + center;
+  green = Math.sin(frequency*item+0+phase) * width + center;
+  blue  = Math.sin(frequency*item+4+phase) * width + center;
 
-      $('#inner-wheel').css({
-        'transform': 'rotate(' + totalDegree + 'deg)'
-      });
+  return RGB2Color(red,green,blue);
+}
 
-      noY = t.offset().top;
+function drawRouletteWheel() {
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    var outsideRadius = 200;
+    var textRadius = 160;
+    var insideRadius = 125;
 
-    });
-  });
-});
+    ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,500,500);
+
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+
+    ctx.font = 'bold 12px Helvetica, Arial';
+
+    for(var i = 0; i < options.length; i++) {
+      var angle = startAngle + i * arc;
+      //ctx.fillStyle = colors[i];
+      ctx.fillStyle = getColor(i, options.length);
+
+      ctx.beginPath();
+      ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
+      ctx.arc(250, 250, insideRadius, angle + arc, angle, true);
+      ctx.stroke();
+      ctx.fill();
+
+      ctx.save();
+      ctx.shadowOffsetX = -1;
+      ctx.shadowOffsetY = -1;
+      ctx.shadowBlur    = 0;
+      ctx.shadowColor   = "rgb(220,220,220)";
+      ctx.fillStyle = "black";
+      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius,
+                    250 + Math.sin(angle + arc / 2) * textRadius);
+      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      var text = options[i];
+      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+      ctx.restore();
+    }
+
+    //Arrow
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
+    ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
+    ctx.lineTo(250 + 4, 250 - (outsideRadius - 5));
+    ctx.lineTo(250 + 9, 250 - (outsideRadius - 5));
+    ctx.lineTo(250 + 0, 250 - (outsideRadius - 13));
+    ctx.lineTo(250 - 9, 250 - (outsideRadius - 5));
+    ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
+    ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
+    ctx.fill();
+  }
+}
+
+function spin() {
+  spinAngleStart = Math.random() * 10 + 10;
+  spinTime = 0;
+  spinTimeTotal = Math.random() * 3 + 4 * 1000;
+  rotateWheel();
+}
+
+function rotateWheel() {
+  spinTime += 30;
+  if(spinTime >= spinTimeTotal) {
+    stopRotateWheel();
+    return;
+  }
+  var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
+  startAngle += (spinAngle * Math.PI / 180);
+  drawRouletteWheel();
+  spinTimeout = setTimeout('rotateWheel()', 30);
+}
+
+function stopRotateWheel() {
+  clearTimeout(spinTimeout);
+  var degrees = startAngle * 180 / Math.PI + 90;
+  var arcd = arc * 180 / Math.PI;
+  var index = Math.floor((360 - degrees % 360) / arcd);
+  ctx.save();
+  ctx.font = 'bold 2.5rem Montserrat, sans-serif';
+  var text = options[index]
+  console.log('Stopped: ', text);
+  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  ctx.restore();
+}
+
+function easeOut(t, b, c, d) {
+  var ts = (t/=d)*t;
+  var tc = ts*t;
+  return b+c*(tc + -3*ts + 3*t);
+}
+
+drawRouletteWheel();

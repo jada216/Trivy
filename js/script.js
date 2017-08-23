@@ -13,7 +13,7 @@ $(function() {
     Game.startGame();
   });
 
-  $('#spin').click(function() {
+  $('#spinButton').click(function() {
     $(this).hide();
     var category = Game.spin();
     Game.callAPI(Game.baseURL + category).done(function(data) {
