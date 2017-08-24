@@ -31,6 +31,7 @@ var Game = (function() {
         $('h1').css('marginTop', '5vh');
         $('#player-score').append(`Score: 0`);
         $('#instructions').hide();
+        $('#header-info').append(`<h4 id='player-score'>Score: 0</h4>`)
       });
     },
 
@@ -60,6 +61,108 @@ var Game = (function() {
       this.answers = this.incorrect;
       var r2 = Math.floor(Math.random() * (this.incorrect.length + 1));
       this.answers.splice(r2, 0, this.correct);
+    },
+
+    normalAnswer() {
+      var game = this;
+      game.answers.forEach(function(item, i) {
+        var $answer = $('<div>').addClass('answers btn btn-secondary');
+        $answer.text(item);
+        $answer.on('click', function() {
+          if ($(this).hasClass('correct')) {
+            document.getElementById('point').play();
+            game.player.consecutiveAnswers++;
+            var barValue = (game.player.consecutiveAnswers / 3) * 100;
+            $('.progress-bar').css('width', `${Math.ceil(barValue)}%`).attr('aria-valuenow', Math.ceil(barValue));
+
+            $('#player-score').text(`Score: ${game.player.score}`);
+            setTimeout(function() {
+              $('#modal-question').text('Close this Pop Up to continue');
+              $('#answers-list').empty();
+              $('.modal-footer button').removeAttr('disabled');
+            }, 800);
+          } else {
+            document.getElementById('no-point').play();  
+            $(this).addClass('bg-danger');
+            setTimeout(function() {
+              $('#modal-question').text('Close this Pop Up to continue');
+              $('#answers-list').empty();
+              $('.modal-footer button').removeAttr('disabled');
+            }, 800);
+          }
+
+          if ($('.progress-bar').attr('aria-valuenow') === '100') {
+            $('.pieces').removeAttr('disabled');
+            $('#get-question').hide();
+            $('#board').show();
+            var $h3 = $('<h3>').text('Choose A Piece to Complete');
+            $('#header-info').append($h3);
+          }
+
+          console.log(game.player.consecutiveAnswers);
+          $('.correct').addClass('bg-success');
+        });
+
+        $('#answers-list').append($answer);
+        if (item.toLowerCase() === game.correct.toLowerCase()) {
+          $answer.addClass('correct');
+        }
+      });
+    },
+
+    pieceAnswer($piece) {
+      var game = this;
+      game.answers.forEach(function(item, i) {
+        var $answer = $('<div>').addClass('answers btn btn-secondary');
+        $answer.text(item);
+        $answer.on('click', function() {
+          if ($(this).hasClass('correct')) {
+            document.getElementById('point').play();
+            game.player.score++;
+            setTimeout(function() {
+              $('#modal-question').text('Close this Pop Up to continue');
+              $('#answers-list').empty();
+              $('#get-question').show();
+              game.player.consecutiveAnswers = 0;
+              $('.progress-bar').css('width', '0%');
+              $piece.addClass('done').removeClass('pieces');
+              $('.pieces').attr('disabled', 'disabled');
+              $('.modal-footer button').removeAttr('disabled');
+              $piece.attr('disabled', 'disabled');
+              $('#player-score').text(`Score: ${game.player.score}`);
+            }, 800);
+          } else {
+            document.getElementById('no-point').play();
+            game.player.consecutiveAnswers = 0;
+            $(this).addClass('bg-danger');
+            setTimeout(function() {
+              $('.progress-bar').css('width', '0%');
+              $('#modal-question').text('Close this Pop Up to continue');
+              $('#answers-list').empty();
+              $('.pieces').attr('disabled', 'disabled');
+              $('.modal-footer button').removeAttr('disabled');
+            }, 800);
+          }
+
+
+          if (game.player.score == 6) {
+            console.log('You Win!');
+            $('#get-question').hide();
+            $('#player-score').text(`You Win!`);
+          } else {
+            $('#board').hide();
+          }
+          $('#header-info h3').remove();
+
+
+          console.log(game.player.consecutiveAnswers);
+          $('.correct').addClass('bg-success');
+        });
+        $('#answers-list').append($answer);
+        if (item.toLowerCase() === game.correct.toLowerCase()) {
+          $answer.addClass('correct');
+        }
+      });
     }
   }
 })();
