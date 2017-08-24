@@ -20,8 +20,8 @@ $(function() {
     $('#get-question').show();
     $('#player-input').hide();
     $('h1').css('marginTop', '5vh');
-    $('#board').show();
     $('#player-score').append(`Score: 0`);
+    $('#instructions').hide();
   });
 
   $('#get-question').click(function(){
@@ -53,20 +53,22 @@ $(function() {
               $('#modal-question').text('Close this Pop Up to continue');
               $('#answers-list').empty();
               $('.modal-footer button').removeAttr('disabled');
-            }, 1500);
+            }, 800);
           } else {
             $(this).addClass('bg-danger');
             setTimeout(function() {
               $('#modal-question').text('Close this Pop Up to continue');
               $('#answers-list').empty();
               $('.modal-footer button').removeAttr('disabled');
-            }, 1500);
+            }, 800);
           }
 
           if ($('.progress-bar').attr('aria-valuenow') === '100') {
-            $('#header-info').text('<h3>Choose A Topic</h3>');
             $('.pieces').removeAttr('disabled');
             $('#get-question').hide();
+            $('#board').show();
+            var $h3 = $('<h3>').text('Choose A Piece to Complete');
+            $('#header-info').append($h3);
           }
 
           console.log(Player.consecutiveAnswers);
@@ -112,15 +114,24 @@ $(function() {
               $('.pieces').attr('disabled', 'disabled');
               $('.modal-footer button').removeAttr('disabled');
               $currentPiece.attr('disabled', 'disabled');
-            }, 1500);
+            }, 800);
           } else {
+            Player.consecutiveAnswers = 0;
             $(this).addClass('bg-danger');
             setTimeout(function() {
+              $('.progress-bar').css('width','0%');
               $('#modal-question').text('Close this Pop Up to continue');
               $('#answers-list').empty();
+              $('.pieces').attr('disabled', 'disabled');
               $('.modal-footer button').removeAttr('disabled');
-            }, 1500);
+            }, 800);
           }
+
+          $('#board').hide();
+          if(Player.score == 6) {
+            console.log('You Win!');
+          }
+          $('#header-info h3').remove();
 
 
           console.log(Player.consecutiveAnswers);

@@ -1,10 +1,11 @@
+// ['History', '&category=23'], ['Sports', '&category=21'], ['Celebs', '&category=26']]
 var Game = (function() {
   return {
     player: '',
     baseURL: 'https://opentdb.com/api.php?amount=1',
     correct: '',
     incorrect: [],
-    categories:[['Film', '&category=11'], ['Music', '&category=12'], ['TV', '&category=14'], ['Science', '&category=17'], ['Math', '&category=19'], ['Geography', '&category=22'], ['History', '&category=23'], ['Sports', '&category=21'], ['Celebs', '&category=26']],
+    categories:[['Film', '&category=11'], ['Music', '&category=12'], ['TV', '&category=14'], ['Science', '&category=17'], ['Math', '&category=19'], ['Geography', '&category=22']],
     startGame: function() {
       $('#start').hide();
       $('#wheel').show();
