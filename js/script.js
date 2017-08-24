@@ -11,6 +11,11 @@ $(function() {
     Game.getQuestion(Game.categories[r1][0]).done(function(data) {
       Game.setupQuestion(data);
       Game.normalAnswer();
+    }).fail(function(){
+      $('#player-score').text('Unfortunately Trivy is unable to grab questions. Try coming back later.');
+      $('.modal-title').text('Error');
+      $('#modal-question').text('Please close this pop up');
+      $('#get-question').hide();
     });
   });
 

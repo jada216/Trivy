@@ -35,6 +35,14 @@ var Game = (function() {
       });
     },
 
+    testGame: function() {
+      return $.ajax({
+        type: 'GET',
+        url: this.baseURL,
+        dataType: 'json'
+      });
+    },
+
     getQuestion: function(category) {
       var url = this.baseURL;
       this.categories.forEach(function(item) {
@@ -45,7 +53,8 @@ var Game = (function() {
       return $.ajax({
         type: 'GET',
         url: url,
-        dataType: 'json'
+        dataType: 'json',
+        timeout: 3000
       });
     },
 
@@ -82,7 +91,7 @@ var Game = (function() {
               $('.modal-footer button').removeAttr('disabled');
             }, 800);
           } else {
-            document.getElementById('no-point').play();  
+            document.getElementById('no-point').play();
             $(this).addClass('bg-danger');
             setTimeout(function() {
               $('#modal-question').text('Close this Pop Up to continue');
@@ -99,7 +108,7 @@ var Game = (function() {
             $('#header-info').append($h3);
           }
 
-          console.log(game.player.consecutiveAnswers);
+          console.log('Answers Correct', game.player.consecutiveAnswers);
           $('.correct').addClass('bg-success');
         });
 
@@ -155,7 +164,7 @@ var Game = (function() {
           $('#header-info h3').remove();
 
 
-          console.log(game.player.consecutiveAnswers);
+          console.log('Answers Correct', game.player.consecutiveAnswers);
           $('.correct').addClass('bg-success');
         });
         $('#answers-list').append($answer);
