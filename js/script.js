@@ -1,45 +1,16 @@
 $(function() {
   var Player = App.Player();
   var Game = App.Game();
-
-  Player.score = 0;
-  Player.consecutiveAnswers = 0;
+  Player.setup();
+  Game.setup();
   Game.player = Player;
 
-  $('.pieces').mouseenter(function() {
-    $(this).css("backgroundColor", "#000").css("color", "#fff");
-  }).mouseleave(function() {
-    $(this).css('backgroundColor', '#fff').css('color', '#000');;
-  });
+  $('#get-question').click(function() {
+    var r1 = Math.floor(Math.random() * Game.categories.length);
 
-  $('.pieces').attr('disabled', 'disabled');
-
-  $('#board').hide();
-  $('#get-question').hide();
-  $('#play').click(function() {
-    $('#get-question').show();
-    $('#player-input').hide();
-    $('h1').css('marginTop', '5vh');
-    $('#player-score').append(`Score: 0`);
-    $('#instructions').hide();
-  });
-
-  $('#get-question').click(function(){
-    var random = Math.floor(Math.random() * Game.categories.length);
-    Game.getQuestion(Game.categories[random][0]).done(function(data) {
-      $('.modal-footer button').attr('disabled', 'disabled');
-      $('#answers-list').empty();
-      console.log(data);
-      $('.modal-title').text(data.results[0].category);
-      $('#modal-question').text(data.results[0].question);
-      Game.correct = data.results[0].correct_answer;
-      Game.incorrect = data.results[0].incorrect_answers;
-
-      var answers = Game.incorrect;
-      var random = Math.floor(Math.random() * (Game.incorrect.length + 1));
-      answers.splice(random, 0, Game.correct);
-
-      answers.forEach(function(item, i) {
+    Game.getQuestion(Game.categories[r1][0]).done(function(data) {
+      Game.setupQuestion(data);
+      Game.answers.forEach(function(item, i) {
         var $answer = $('<div>').addClass('answers btn btn-secondary');
         $answer.text(item);
         $answer.on('click', function() {
@@ -83,22 +54,12 @@ $(function() {
   });
 
   $('.pieces').on('click', function() {
-    $('.modal-header').text($(this).text());
     var $currentPiece = $(this);
     $currentPiece.css('backgroundColor', '#5C9EAD').css('color', '#fff');
     Game.getQuestion($(this).text()).done(function(data) {
-      $('.modal-footer button').attr('disabled', 'disabled');
-      $('#answers-list').empty();
-      console.log(data);
-      $('#modal-question').text(data.results[0].question);
-      Game.correct = data.results[0].correct_answer;
-      Game.incorrect = data.results[0].incorrect_answers;
+      Game.setupQuestion(data);
 
-      var answers = Game.incorrect;
-      var random = Math.floor(Math.random() * (Game.incorrect.length + 1));
-      answers.splice(random, 0, Game.correct);
-
-      answers.forEach(function(item, i) {
+      Game.answers.forEach(function(item, i) {
         var $answer = $('<div>').addClass('answers btn btn-secondary');
         $answer.text(item);
         $answer.on('click', function() {
@@ -109,7 +70,7 @@ $(function() {
               $('#answers-list').empty();
               $('#get-question').show();
               Player.consecutiveAnswers = 0;
-              $('.progress-bar').css('width','0%');
+              $('.progress-bar').css('width', '0%');
               $currentPiece.addClass('done').removeClass('pieces');
               $('.pieces').attr('disabled', 'disabled');
               $('.modal-footer button').removeAttr('disabled');
@@ -119,7 +80,7 @@ $(function() {
             Player.consecutiveAnswers = 0;
             $(this).addClass('bg-danger');
             setTimeout(function() {
-              $('.progress-bar').css('width','0%');
+              $('.progress-bar').css('width', '0%');
               $('#modal-question').text('Close this Pop Up to continue');
               $('#answers-list').empty();
               $('.pieces').attr('disabled', 'disabled');
@@ -128,7 +89,7 @@ $(function() {
           }
 
           $('#board').hide();
-          if(Player.score == 6) {
+          if (Player.score == 6) {
             console.log('You Win!');
           }
           $('#header-info h3').remove();
@@ -149,5 +110,4 @@ $(function() {
     $('.pieces').css('backgroundColor', '#fff').css('color', '#000');
 
   });
-
 });
