@@ -54,9 +54,12 @@ var Game = (function() {
     },
 
     setupQuestion(data) {
+      var questionTxt = $('<textarea>').html(data.results[0].question).val();
+      var categoryText = $('<textarea>').html(data.results[0].category).val();
+
       $('#answers-list').empty();
-      $('#modal-question').text(data.results[0].question);
-      $('.modal-title').text(data.results[0].category);
+      $('#modal-question').text(questionTxt);
+      $('.modal-title').text(categoryText);
       $('.modal-footer button').attr('disabled', 'disabled');
 
       this.correct = data.results[0].correct_answer;
@@ -65,6 +68,7 @@ var Game = (function() {
       this.answers = this.incorrect;
       var r2 = Math.floor(Math.random() * (this.incorrect.length + 1));
       this.answers.splice(r2, 0, this.correct);
+      this.answers = this.decodeAnswers(this.answers);
     },
 
     normalAnswer() {
@@ -167,6 +171,17 @@ var Game = (function() {
           $answer.addClass('correct');
         }
       });
+    },
+
+    decodeAnswers: function(answers) {
+      var decoded = [];
+      answers.forEach(function(item) {
+        var decodedTxt = $('<textarea>').html(item).val();
+        decoded.push(decodedTxt);
+      });
+      return decoded;
     }
+
+
   }
 })();
