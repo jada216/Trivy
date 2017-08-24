@@ -1,9 +1,17 @@
 $(function() {
   var Player = App.Player();
   var Game = App.Game();
+  var SpeedGame = App.SpeedGame();
+
+  console.log('SpeedGame', SpeedGame);
+  console.log('Game', Game);
+
   Player.setup();
   Game.setup();
+  SpeedGame.setup();
   Game.player = Player;
+  SpeedGame.player = Player;
+
 
   $('#get-question').click(function() {
     var r1 = Math.floor(Math.random() * Game.categories.length);

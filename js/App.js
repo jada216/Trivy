@@ -5,6 +5,9 @@ var App = (function (){
     },
     Player: function() {
       return Player;
+    },
+    SpeedGame: function() {
+      return SpeedGame;
     }
   };
 })();

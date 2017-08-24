@@ -8,12 +8,6 @@ var Game = (function() {
     answers: [],
     categories:[['Film', '&category=11'], ['Music', '&category=12'], ['TV', '&category=14'], ['Science', '&category=17'], ['Math', '&category=19'], ['Geography', '&category=22']],
 
-    startGame: function() {
-      $('#start').hide();
-      $('#wheel').show();
-      $('h1').css('marginTop', '10vh');
-    },
-
     setup: function() {
       $('.pieces').mouseenter(function() {
         $(this).css("backgroundColor", "#000").css("color", "#fff");
@@ -26,6 +20,7 @@ var Game = (function() {
       $('#board').hide();
       $('#get-question').hide();
       $('#play').click(function() {
+        $('#board').show();
         $('#get-question').show();
         $('#player-input').hide();
         $('h1').css('marginTop', '5vh');
@@ -81,7 +76,7 @@ var Game = (function() {
           if ($(this).hasClass('correct')) {
             document.getElementById('point').play();
             game.player.consecutiveAnswers++;
-            var barValue = (game.player.consecutiveAnswers / 3) * 100;
+            var barValue = (game.player.consecutiveAnswers / 2) * 100;
             $('.progress-bar').css('width', `${Math.ceil(barValue)}%`).attr('aria-valuenow', Math.ceil(barValue));
 
             $('#player-score').text(`Score: ${game.player.score}`);
@@ -150,6 +145,7 @@ var Game = (function() {
               $('#answers-list').empty();
               $('.pieces').attr('disabled', 'disabled');
               $('.modal-footer button').removeAttr('disabled');
+              $('#get-question').show();
             }, 800);
           }
 
@@ -158,10 +154,9 @@ var Game = (function() {
             console.log('You Win!');
             $('#get-question').hide();
             $('#player-score').text(`You Win!`);
-          } else {
-            $('#board').hide();
           }
           $('#header-info h3').remove();
+          $('.progress-bar').attr('aria-valuenow', '0');
 
 
           console.log('Answers Correct', game.player.consecutiveAnswers);

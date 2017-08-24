@@ -42,14 +42,16 @@
   <div id='instructions'>
     <h3>Instructions</h3>
     <h4>Classic</h4>
-    <p class='text-center'>Trivy is a game based on the popular app Trivia Crack. The player need to complete each of the question categories to win the game. In order to 'win' a category piece, you must get 3 random questions correct and then you must get the question of the category you chose correct. You can keep track of how many questions you got correct with the progress bar below. Once you win all the pieces, you win the game! Click the Play button below to get started.</p>
+    <p>Classic Trivy is a game based on the popular app Trivia Crack. The player need to complete each of the question categories to win the game. In order to 'win' a category piece, you must get 3 random questions correct and then you must get the question
+      of the category you chose correct. You can keep track of how many questions you got correct with the progress bar below. Once you win all the pieces, you win the game! Click the Play button below to get started.</p>
 
     <h4>Speed Round</h4>
+    <p>You have 20 questions and 30 seconds. How many can you get right and how fast can you get them right? Test out your quick Trivia skills with the Speed Round</p>
   </div>
   <div id='player-input' class='text-center'>
     <!-- <input type="text" class="form-control" id="playerName" placeholder="Player Name"> -->
     <input type="button" value="Play Classic" id='play' class='btn btn-lg btn-outline-info' />
-    <input type="button" value="Play Speed Round" id='speed-round' class='btn btn-lg btn-outline-info' />
+    <input type="button" value="Play Speed Round" id='speed-round' class='btn btn-lg btn-outline-info' disabled='disabeld'/>
   </div>
 
   <div id='board' class='container'>
@@ -76,6 +78,18 @@
       </div>
     </div>
   </div>
+
+  <div id="speedBoard" class='col-lg-10 offset-lg-1'>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Question Category</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Question</h6>
+        <p class="card-text">Question Text</p>
+        <div id='speed-answers'></div>
+      </div>
+    </div>
+  </div>
+
   <div id='button-wrapper' class='text-center'>
     <input type="button" value="Get Question" id='get-question' class='btn btn-lg btn-outline-info' data-toggle="modal" data-target="#questionModal" />
   </div>
@@ -86,6 +100,7 @@
 
   <audio id="point" src="media/point.wav"></audio>
   <audio id="no-point" src="media/no_point.wav"></audio>
+  <audio id="background-music" src="media/background.mp3" controls autoplay loop></audio>
 </main>
 
 <footer class='text-center'>
@@ -96,6 +111,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src='js/SpeedGame.js'></script>
   <script src='js/Player.js'></script>
   <script src='js/Game.js'></script>
   <script src='js/App.js'></script>

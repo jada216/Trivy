@@ -13,13 +13,14 @@ h1 {
   letter-spacing: 1.5em;
   margin-left: 1.75em;
   margin-bottom: 0.4em;
-  margin-top: 40vh;
+  margin-top: 10vh;
   color:#5C9EAD;
 }
 
 h3,h4 {
   color: #fff;
   text-align: center;
+  margin-bottom: 0.5em;
 }
 
 #choose-category h3 {
@@ -80,6 +81,10 @@ p {
   height: 25vh;
   border: 1px solid #000;
   padding-top: 1.5em;
+}
+
+#background-music {
+  display: none;
 }
 
 /*.pieces:hover {
