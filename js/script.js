@@ -36,6 +36,12 @@ $(function() {
     });
   });
 
+  $('#go').on('click', function(){
+    SpeedGame.getQuestions().done(function(data){
+      console.log(data);
+    });
+  });
+
   $('.modal-footer button').click(function() {
     $('.pieces').css('backgroundColor', '#fff').css('color', '#000');
   });

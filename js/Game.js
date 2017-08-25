@@ -18,6 +18,7 @@ var Game = (function() {
       $('.pieces').attr('disabled', 'disabled');
 
       $('#board').hide();
+      $('#go').hide();
       $('#get-question').hide();
       $('#play').click(function() {
         $('#board').show();
@@ -157,7 +158,7 @@ var Game = (function() {
           if (game.player.score === 1) {
             $('#get-question').remove();
             $('#player-score').remove();
-            $('#header-info').append(`<h4>YOU WIN!</h4>`);           
+            $('#header-info').append(`<h4>YOU WIN!</h4>`);
              console.log('You Are A Winner');
           }
 

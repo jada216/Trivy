@@ -10,19 +10,23 @@ var SpeedGame = (function() {
     setup: function() {
       var randomPage = Math.ceil(Math.random() * 10);
       this.page = randomPage;
+      this.baseURL = `https://qriusity.com/v1/questions?page=${this.page}&limit=20`;
+      console.log('Random Page', randomPage);
 
+      $('#go').hide();
       $('#board').hide();
       $('#speedBoard').hide();
       $('#get-question').hide();
-      $('.card').hide();
-      $('#speed-round').click(function() {
+      $('#speed-round').on('click', function() {
         console.log('hello');
         $('#player-input').hide();
-        $('#speed').show();
         $('h1').css('marginTop', '5vh');
         $('#player-score').append(`Score: 0`);
         $('#instructions').hide();
         $('#header-info').append(`<h4 id='player-score'>Score: 0</h4>`);
+        $('#speedBoard').show();
+        $('.progress').hide();
+        $('#go').show();
       });
     },
 
