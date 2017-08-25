@@ -18,6 +18,7 @@ var Game = (function() {
       $('.pieces').attr('disabled', 'disabled');
 
       $('#board').hide();
+      $('#go').hide();
       $('#get-question').hide();
       $('#play').click(function() {
         $('#board').show();
@@ -155,15 +156,17 @@ var Game = (function() {
 
 
           if (game.player.score === 1) {
-            console.log('You Win!');
-            $('#get-question').hide();
-            $('#player-score').text(`You Win!`);
+            $('#get-question').remove();
+            $('#player-score').remove();
+            $('#header-info').append(`<h4>YOU WIN!</h4>`);
+             console.log('You Are A Winner');
           }
+
           $('#header-info h3').remove();
           $('.progress-bar').attr('aria-valuenow', '0');
 
 
-          console.log('Answers Correct', game.player.consecutiveAnswers);
+          console.log('Player Score', game.player.score);
           $('.correct').addClass('bg-success');
         });
         $('#answers-list').append($answer);

@@ -17,6 +17,7 @@ $(function() {
     var r1 = Math.floor(Math.random() * Game.categories.length);
 
     Game.getQuestion(Game.categories[r1][0]).done(function(data) {
+      console.log(data);
       Game.setupQuestion(data);
       Game.normalAnswer();
     }).fail(function(){
@@ -33,6 +34,16 @@ $(function() {
     Game.getQuestion($(this).text()).done(function(data) {
       Game.setupQuestion(data);
       Game.pieceAnswer($currentPiece);
+    });
+  });
+
+  $('#go').on('click', function(){
+    SpeedGame.getQuestions().done(function(data){
+      console.log(data);
+      SpeedGame.data = data;
+      console.log('Speed Game Data ', data);
+      SpeedGame.startRound();
+      
     });
   });
 
