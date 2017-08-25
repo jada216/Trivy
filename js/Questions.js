@@ -119,7 +119,7 @@ var Questions = [
     category: 'Space',
     question: 'What is the seventh planet from the sun',
     correct_answer: 'Uranus'
-  }
+  },
 
   {
     category: 'Music',
