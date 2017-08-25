@@ -60,13 +60,12 @@ $(function() {
     console.log(backupQuestions);
       $('#speed-form').submit(function(e){
         e.preventDefault();
-        console.log($('speed-input').val() === realAnswer);
-        console.log('Answer ', realAnswer.toLowerCase());
-        console.log('My Answer', $('#speed-input').val().toLowerCase());
-        if($('#speed-input').toString().toLowerCase() === realAnswer.toLowerCase()) {
+        console.log(backupQuestions);
+
+        if(realAnswer.toString().toLowerCase() === $('#speed-input').val().toString().toLowerCase()) {
           console.log('Correct');
           score++;
-          $('#header-info').text(`Score: ${score}`);
+          $('#player-score').text(`Score: ${score}`);
           document.getElementById('point').play();
         } else {
           document.getElementById('no-point').play();
@@ -77,16 +76,16 @@ $(function() {
         $('#speed-input').val('');
       });
 
-
-    SpeedGame.getQuestions().done(function(data){
-      console.log(data);
-      SpeedGame.data = data;
-      localStorage.speedData = data;
-      console.log('Speed Game Data ', data);
-      SpeedGame.startRound();
-
-
-    });
+    //
+    // SpeedGame.getQuestions().done(function(data){
+    //   console.log(data);
+    //   SpeedGame.data = data;
+    //   localStorage.speedData = data;
+    //   console.log('Speed Game Data ', data);
+    //   SpeedGame.startRound();
+    //
+    //
+    // });
   });
 
   $('.modal-footer button').click(function() {
@@ -94,7 +93,9 @@ $(function() {
   });
 
   function nextQuestion(current) {
+    console.log('Current index', current);
     var q = backupQuestions[current];
+    console.log('Current Question', q);
     $('.card-title').text(q.category);
     $('.card-text').text(q.question);
     backupQuestions.pop(q);
