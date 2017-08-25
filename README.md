@@ -1,5 +1,7 @@
 # TRIVY - A Simple Fun Trivia Game
 
+## Trello Board - https://trello.com/b/klhYi8TN/trivy
+
 ### What Is Trivy?
 Originally TRIVY was supposed to be a web game based on the mobile app Trivia Crack. The game has two players who try to collect 6 category pieces. In order to collect those pieces they must answer 3 correct random trivia questions and then the category question to collect the piece. Whichever player has all 6 pieces first wins the game.
 
