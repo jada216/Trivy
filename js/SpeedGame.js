@@ -16,8 +16,9 @@ var SpeedGame = (function() {
       $('#get-question').hide();
       $('.card').hide();
       $('#speed-round').click(function() {
+        console.log('hello');
         $('#player-input').hide();
-        $('.card').show();
+        $('#speed').show();
         $('h1').css('marginTop', '5vh');
         $('#player-score').append(`Score: 0`);
         $('#instructions').hide();
