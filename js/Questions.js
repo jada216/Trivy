@@ -98,9 +98,9 @@ var Questions = [
   },
 
   {
-    category: 'Music',
-    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
-    correct_answer: 'Carly Rae Jepsen'
+    category: 'Movies',
+    question: 'Who played Neo in the Matrix?',
+    correct_answer: 'Keanu Reeves'
   },
 
   {
@@ -110,15 +110,32 @@ var Questions = [
   },
 
   {
-    category: 'Music',
-    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
-    correct_answer: 'Carly Rae Jepsen'
+    category: 'Geography',
+    question: 'What is the worlds biggest island?',
+    correct_answer: 'Greenland'
   },
 
   {
+    category: 'Space',
+    question: 'What is the seventh planet from the sun',
+    correct_answer: 'Uranus'
+  }
+
+  {
     category: 'Music',
-    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
-    correct_answer: 'Carly Rae Jepsen'
+    question: "Who sings 'It's Getting Hot In Here'?",
+    correct_answer: 'Nelly'
   },
 
+  {
+    category: 'Games',
+    question: 'When was Tony Hawk Pro Skater Released?',
+    correct_answer: '1999'
+  },
+
+  {
+    category: 'Games',
+    question: 'How many spaces are there on a standard Monopoly board?',
+    correct_answer: '40'
+  }
 ]
