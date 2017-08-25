@@ -156,6 +156,8 @@ var Game = (function() {
 
 
           if (game.player.score === 6) {
+              document.getElementById('win-game').play();
+              document.getElementById('background-music').pause();
             $('#get-question').remove();
             $('#player-score').remove();
             $('#header-info').append(`<h4>YOU WIN!</h4>`);

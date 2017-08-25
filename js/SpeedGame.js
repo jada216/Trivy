@@ -22,6 +22,7 @@ var SpeedGame = (function() {
       $('#get-question').hide();
       $('#speed-round').on('click', function() {
         console.log('hello');
+        $('#speed-input').attr('disabled', 'disabled');
         $('#player-input').hide();
         $('h1').css('marginTop', '5vh');
         $('#player-score').append(`Score: 0`);

@@ -3,10 +3,7 @@ $(function() {
   var Game = App.Game();
   var SpeedGame = App.SpeedGame();
   var backupQuestions = Questions;
-  var timer = 30;
-
-  console.log('SpeedGame', SpeedGame);
-  console.log('Game', Game);
+  var timer = 40;
 
   Player.setup();
   Game.setup();
@@ -41,11 +38,14 @@ $(function() {
 
   $('#go').on('click', function(){
     var score = 0;
+    $('#speed-input').removeAttr('disabled', 'disabled');
     $('#header-info').append(`<h4 id='time'>Time Remaining: ${timer}`);
 
     setInterval(function(){
       timer--;
-      if(timer <= 0) {
+      if(timer === 0) {
+        document.getElementById('stop').play();
+      } else if(timer <= 0) {
         $('#time').text(`Time Remaining: 0`);
         $('#speed-input').attr('disabled', 'disabled');
       } else {
@@ -98,7 +98,7 @@ $(function() {
     console.log('Current Question', q);
     $('.card-title').text(q.category);
     $('.card-text').text(q.question);
-    backupQuestions.pop(q);
+    backupQuestions.splice(current, 1);
     return q.correct_answer;
   }
 

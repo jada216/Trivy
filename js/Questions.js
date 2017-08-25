@@ -101,5 +101,24 @@ var Questions = [
     category: 'Music',
     question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
     correct_answer: 'Carly Rae Jepsen'
-  }
+  },
+
+  {
+    category: 'Music',
+    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
+    correct_answer: 'Carly Rae Jepsen'
+  },
+
+  {
+    category: 'Music',
+    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
+    correct_answer: 'Carly Rae Jepsen'
+  },
+
+  {
+    category: 'Music',
+    question: 'Who is the Canadian singer-songwriter best known for her hit song, "Call Me Maybe"?',
+    correct_answer: 'Carly Rae Jepsen'
+  },
+
 ]
