@@ -6,6 +6,9 @@ var SpeedGame = (function() {
     correct: '',
     incorrect: [],
     answers: [],
+    data: [],
+    timer: 30,
+    currentQuestion: 0;
 
     setup: function() {
       var randomPage = Math.ceil(Math.random() * 10);
@@ -37,5 +40,23 @@ var SpeedGame = (function() {
         dataType: 'json'
       });
     },
+
+    startRound: function() {
+      this.currentQuestion = 0;
+      // $('.card-title').text(this.data[this.currentQuestion].category.name);
+      // $('.card-text').text(this.data[this.currentQuestion].question);
+      // $('#speed-answers').append(`<div class='answers'>this.data[this.currentQuestion].option1</div>`);
+      // $('#speed-answers').append(`<div class='answers'>this.data[this.currentQuestion].option2</div>`);
+      // $('#speed-answers').append(`<div class='answers'>this.data[this.currentQuestion].option3</div>`);
+      // $('#speed-answers').append(`<div class='answers'>this.data[this.currentQuestion].option4</div>`);
+
+      //var correct = $('#speed-answers .answers').get(this.data[this.currentQuestion].answers);
+      //$(correct).addClass('correct');
+
+      setTimeout(function(){
+        this.timer--;
+        //$('#timer').text(this.timer);
+      }, 1000);
+    }
   }
 })();
