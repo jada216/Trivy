@@ -3,6 +3,7 @@ $(function() {
   var Game = App.Game();
   var SpeedGame = App.SpeedGame();
   var backupQuestions = Questions;
+  var timer = 30;
 
   console.log('SpeedGame', SpeedGame);
   console.log('Game', Game);
@@ -39,6 +40,18 @@ $(function() {
   });
 
   $('#go').on('click', function(){
+    var score = 0;
+    $('#header-info').append(`<h4 id='time'>Time Remaining: ${timer}`);
+
+    setInterval(function(){
+      timer--;
+      if(timer === 0) {
+        $('#time').text(`Time Remaining: 0`);
+        $('#speed-input').attr('disabled', 'disabled');
+      } else {
+        $('#time').text(`Time Remaining: ${timer}`);
+      }
+    }, 1000);
     var current = Math.floor(Math.random() * backupQuestions.length);
     var realAnswer = nextQuestion(current);
     $(this).hide();
@@ -47,11 +60,16 @@ $(function() {
     console.log(backupQuestions);
       $('#speed-form').submit(function(e){
         e.preventDefault();
-        console.log('Answer ', realAnswer);
-        console.log('My Answer', $('#speed-input').val());
+        console.log($('speed-input').val() === realAnswer);
+        console.log('Answer ', realAnswer.toLowerCase());
+        console.log('My Answer', $('#speed-input').val().toLowerCase());
         if($('#speed-input').toString().toLowerCase() === realAnswer.toLowerCase()) {
           console.log('Correct');
+          score++;
+          $('#header-info').text(`Score: ${score}`);
+          document.getElementById('point').play();
         } else {
+          document.getElementById('no-point').play();
           console.log('Wrong');
         }
         current = Math.floor(Math.random() * backupQuestions.length);

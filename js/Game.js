@@ -155,7 +155,7 @@ var Game = (function() {
           }
 
 
-          if (game.player.score === 1) {
+          if (game.player.score === 6) {
             $('#get-question').remove();
             $('#player-score').remove();
             $('#header-info').append(`<h4>YOU WIN!</h4>`);
