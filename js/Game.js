@@ -154,7 +154,7 @@ var Game = (function() {
           }
 
 
-          if (game.player.score == 6) {
+          if (game.player.score === 1) {
             console.log('You Win!');
             $('#get-question').hide();
             $('#player-score').text(`You Win!`);
