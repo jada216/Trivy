@@ -2,7 +2,7 @@ var SpeedGame = (function() {
   return {
     player: '',
     page: 1,
-    baseURL: `https://qriusity.com/v1/questions?page=${this.page}&limit=20`,
+    baseURL: `https://opentdb.com/api.php?amount=20`,
     correct: '',
     incorrect: [],
     answers: [],
@@ -11,10 +11,10 @@ var SpeedGame = (function() {
     currentQuestion: 0,
 
     setup: function() {
-      var randomPage = Math.ceil(Math.random() * 10);
-      this.page = randomPage;
-      this.baseURL = `https://qriusity.com/v1/questions?page=${this.page}&limit=20`;
-      console.log('Random Page', randomPage);
+      // var randomPage = Math.ceil(Math.random() * 10);
+      // this.page = randomPage;
+      this.baseURL = `https://opentdb.com/api.php?amount=20`;
+      // console.log('Random Page', randomPage);
 
       $('#go').hide();
       $('#board').hide();
