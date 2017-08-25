@@ -45,7 +45,7 @@ $(function() {
 
     setInterval(function(){
       timer--;
-      if(timer === 0) {
+      if(timer <= 0) {
         $('#time').text(`Time Remaining: 0`);
         $('#speed-input').attr('disabled', 'disabled');
       } else {
