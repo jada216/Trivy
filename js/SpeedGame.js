@@ -8,7 +8,7 @@ var SpeedGame = (function() {
     answers: [],
     data: [],
     timer: 30,
-    currentQuestion: 0;
+    currentQuestion: 0,
 
     setup: function() {
       var randomPage = Math.ceil(Math.random() * 10);
